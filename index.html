@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carnet de bord — une proposition d'Estelle Lavenac pour PONANT</title>
+<meta name="description" content="Concept d'application compagnon pour les voyages d'exploration — proposition de candidature d'Estelle Lavenac, designer graphique.">
+<meta property="og:title" content="Carnet de bord — une proposition d'Estelle Lavenac pour PONANT">
+<meta property="og:description" content="Ce que je pourrais vous apporter : un concept d'application compagnon pour les voyages d'exploration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Jost:wght@400;500;600&display=swap">
+<style>
+:root{--navy:#0A2240;--navy2:#13325A;--ground:#F4F6F8;--line:#DCE3EA;--muted:#52637A;--soft:#C7D2DE;--sand:#B49A6C;--white:#FFFFFF}
+*{box-sizing:border-box}
+body{margin:0;background:#E7ECF0;color:var(--navy);font-family:'Jost',sans-serif}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+.display{font-family:'Peignot','Josefin Sans',sans-serif}
+.intro{max-width:1100px;margin:0 auto;padding:56px 16px 24px;display:flex;flex-direction:column;gap:14px}
+.intro .kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.intro h1{margin:0;font-family:'Peignot','Josefin Sans',sans-serif;font-weight:300;font-size:clamp(30px,5vw,48px);letter-spacing:1px;line-height:1.1}
+.intro p{margin:0;max-width:640px;font-size:17px;line-height:1.55;color:#33465C}
+.intro .tag{align-self:flex-start;font-size:13px;color:var(--muted);border:1px solid #C3CED8;border-radius:999px;padding:6px 14px}
+.stage{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;padding:24px 16px 56px;max-width:1800px;margin:0 auto}
+.screen-wrap{display:flex;flex-direction:column;gap:12px;align-items:center}
+.screen-label{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.phone{width:390px;max-width:calc(100vw - 32px);height:844px;position:relative;overflow:hidden;background:var(--ground);border-radius:40px;box-shadow:0 30px 60px rgba(10,34,64,.18),0 0 0 10px #0A2240;transition:box-shadow .3s}
+.phone.flash{box-shadow:0 30px 60px rgba(10,34,64,.18),0 0 0 10px #0A2240,0 0 0 16px var(--sand)}
+.hero{position:absolute;left:0;top:0;width:100%;background:var(--navy);overflow:hidden}
+.hero svg{position:absolute;left:0;top:0}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:500}
+.card{background:#fff;border-radius:28px;padding:20px}
+.shadow{box-shadow:0 12px 32px rgba(10,34,64,.10)}
+.iconbtn{width:44px;height:44px;border-radius:22px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;cursor:pointer}
+nav.tab{position:absolute;left:20px;right:20px;bottom:24px;height:68px;border-radius:34px;background:var(--navy);display:flex;align-items:center;justify-content:space-around;padding:0 8px;box-shadow:0 16px 32px rgba(10,34,64,.25)}
+nav.tab a{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:24px;color:var(--soft);font-size:13px;font-weight:600;gap:8px}
+nav.tab a.on{width:auto;padding:0 16px;background:#fff;color:var(--navy)}
+nav.tab a:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--sand);outline-offset:2px}
+.tile{background:#fff;border-radius:24px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.tile b{font-weight:600;font-size:15px}
+.tile span{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:16px;align-items:center}
+.time{width:44px;font-size:13px;color:var(--muted);text-align:right;flex-shrink:0}
+.dot{width:9px;height:9px;border-radius:5px;background:var(--line);flex-shrink:0}
+.dot.next{background:#fff;border:2px solid var(--line);width:11px;height:11px;border-radius:6px}
+.ev{flex:1;background:#fff;border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.ev b{font-weight:600;font-size:15px}.ev span{font-size:12px;color:var(--muted)}
+.past{opacity:.6}
+.day{flex:1;height:60px;border-radius:20px;border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;background:#fff;color:var(--navy)}
+.day.on{background:var(--navy);color:#fff}
+.day small{font-size:10px;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+.day strong{font-size:18px;font-weight:600}
+.pill{min-width:72px;height:44px;border-radius:22px;font-size:13px;font-weight:600;cursor:pointer;background:#fff;color:var(--navy);border:1px solid var(--line)}
+.pill.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.badge{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--ground);color:var(--muted)}
+.badge.on{background:var(--navy);color:#fff}
+.check{display:flex;align-items:center;gap:14px;min-height:44px;cursor:pointer;font-size:15px}
+.check input{width:22px;height:22px;accent-color:var(--navy);margin:0}
+.ready{height:56px;border-radius:28px;border:none;font-size:16px;font-weight:600;letter-spacing:.5px;cursor:pointer;background:var(--navy);color:#fff;width:100%}
+.ready.on{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
+footer{max-width:1100px;margin:0 auto;padding:8px 16px 64px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
+footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
+@media (max-width:440px){.phone{border-radius:28px;box-shadow:0 20px 40px rgba(10,34,64,.18),0 0 0 6px #0A2240}}
+</style>
+</head>
+<body>
+
+<header class="intro">
+<div class="kicker">Candidature · Graphic Designer · PONANT Marseille</div>
+<h1>Ce que je pourrais vous apporter</h1>
+<p>Une proposition pour prolonger l'expérience PONANT dans la poche des passagers : un carnet de bord qui raconte l'expédition au fil des jours — programme, sorties en zodiac, carnet de faune — dans l'élégance Art déco de votre charte. Les écrans sont interactifs : cliquez, cochez, naviguez.</p>
+<div class="tag">Concept personnel, non officiel · contenu d'exemple : « Polar Lights », Le Commandant Charcot</div>
+</header>
+
+<main class="stage">
+
+<!-- 01 ACCUEIL -->
+<section class="screen-wrap" aria-label="Écran 1 : Accueil">
+<div class="screen-label">01 · Accueil</div>
+<div class="phone" id="accueil">
+<div class="hero" style="height:390px">
+<svg width="390" height="390" viewBox="0 0 390 390" fill="none" aria-hidden="true">
+<path d="M-20 130 C 80 70, 160 160, 250 100 S 380 70, 420 110" stroke="#B49A6C" stroke-opacity=".6" stroke-width="1.2"/>
+<path d="M-20 150 C 90 90, 170 180, 260 120 S 380 90, 420 135" stroke="#fff" stroke-opacity=".18"/>
+<path d="M-20 170 C 100 110, 180 200, 270 140 S 380 110, 420 160" stroke="#fff" stroke-opacity=".09"/>
+<path d="M0 310 L60 250 L95 275 L150 215 L205 272 L245 242 L300 290 L340 260 L390 300 L390 390 L0 390 Z" fill="#13325A"/>
+<path d="M150 215 L170 236 L160 234 L150 246 L140 232 L132 234 Z" fill="#F4F6F8" fill-opacity=".85"/>
+<path d="M245 242 L258 255 L245 254 L236 252 Z" fill="#F4F6F8" fill-opacity=".7"/>
+<path d="M0 340 C 70 310, 140 360, 210 332 S 330 310, 390 335 L390 390 L0 390 Z" fill="#F4F6F8"/>
+</svg>
+<div style="position:absolute;left:24px;top:56px;right:24px;display:flex;justify-content:space-between;align-items:center">
+<div class="display" style="font-size:22px;letter-spacing:7px;color:#fff">PONANT</div>
+<button class="iconbtn" aria-label="Notifications"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+</div>
+<div style="position:absolute;left:24px;top:150px;right:24px;display:flex;flex-direction:column;gap:8px">
+<div class="eyebrow" style="color:var(--sand)">Jour 3 · Mer de Norvège</div>
+<div class="display" style="font-size:34px;line-height:1.1;color:#fff;font-weight:300;letter-spacing:1px">Bonjour, Claire</div>
+<div style="font-size:14px;color:var(--soft)">Le Commandant Charcot · Suite 604</div>
+</div>
+</div>
+<div style="position:absolute;left:20px;right:20px;top:305px;display:flex;flex-direction:column;gap:14px">
+<div class="card shadow" style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:4px">
+<div class="display" style="font-size:18px;letter-spacing:2px;text-transform:uppercase;font-weight:600">Polar Lights</div>
+<div style="font-size:13px;color:var(--muted)">Du Cap Nord aux îles Lofoten</div>
+</div>
+<div style="font-size:13px;font-weight:600">Nuit 3 / 8</div>
+</div>
+<div style="position:relative;height:34px">
+<div style="position:absolute;left:6px;right:6px;top:6px;height:2px;background:var(--line)"></div>
+<div style="position:absolute;left:6px;width:38%;top:6px;height:2px;background:var(--sand)"></div>
+<div style="position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;font-size:10px;color:var(--muted)">
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:7px;background:var(--sand)"></div>Cap Nord</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--navy);font-weight:600"><div style="width:14px;height:14px;border-radius:7px;background:var(--navy);box-shadow:0 0 0 5px rgba(180,154,108,.3)"></div>En mer</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:7px;border:2px solid var(--line);background:#fff"></div>Tromsø</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:7px;border:2px solid var(--line);background:#fff"></div>Senja</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:7px;border:2px solid var(--line);background:#fff"></div>Lofoten</div>
+</div>
+</div>
+</div>
+<a href="#escale" class="goto" style="background:var(--navy);border-radius:28px;padding:20px;display:flex;align-items:center;gap:16px;color:#fff">
+<div style="width:56px;height:56px;border-radius:20px;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M4 13l2-5h12l2 5"/><path d="M9 8V5h6v3"/></svg></div>
+<div style="display:flex;flex-direction:column;gap:3px;flex:1">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sand)">Prochain moment · 14:30</div>
+<div class="display" style="font-size:20px;letter-spacing:1px">Sortie en zodiac</div>
+<div style="font-size:13px;color:var(--soft)">Groupe Fulmar · Pont 4, marina</div>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+</a>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<a href="#journee" class="goto tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2240" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="4"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Ma journée</b><span>6 rendez-vous</span></a>
+<a href="#faune" class="goto tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2240" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15" r="4"/><circle cx="17" cy="15" r="4"/><path d="M11 15h2M5 11l2-6h3l1 6M19 11l-2-6h-3l-1 6"/></svg><b>Carnet de faune</b><span data-seen-count>4 espèces observées</span></a>
+</div>
+</div>
+<nav class="tab" data-active="accueil"></nav>
+</div>
+</section>
+
+<!-- 02 JOURNEE -->
+<section class="screen-wrap" aria-label="Écran 2 : Ma journée">
+<div class="screen-label">02 · Ma journée</div>
+<div class="phone" id="journee">
+<div style="padding:56px 24px 0;display:flex;flex-direction:column;gap:6px">
+<div class="eyebrow" style="color:var(--muted)">Jeudi · Jour 3</div>
+<div class="display" style="font-size:32px;font-weight:300;letter-spacing:1px">Ma journée</div>
+</div>
+<div style="margin-top:20px;padding:0 24px;display:flex;gap:8px" id="days"></div>
+<div style="margin:24px 20px 0;position:relative;display:flex;flex-direction:column;gap:10px">
+<div style="position:absolute;left:64px;top:18px;bottom:18px;width:1px;background:var(--line)"></div>
+<div class="row past"><div class="time">08:30</div><div class="dot"></div><div class="ev"><b>Conférence : les aurores boréales</b><span>Théâtre · Pont 5</span></div></div>
+<div class="row past"><div class="time">11:00</div><div class="dot"></div><div class="ev"><b>Briefing sécurité zodiac</b><span>Grand salon · Pont 6</span></div></div>
+<div class="row past"><div class="time">12:30</div><div class="dot"></div><div class="ev"><b>Déjeuner</b><span>Restaurant · Pont 4</span></div></div>
+<a href="#escale" class="goto row" style="color:#fff">
+<div class="time" style="color:var(--navy);font-weight:600">14:30</div>
+<div class="dot" style="background:var(--sand);box-shadow:0 0 0 5px rgba(180,154,108,.3)"></div>
+<div style="flex:1;background:var(--navy);border-radius:22px;padding:18px 16px;display:flex;flex-direction:column;gap:4px;box-shadow:0 12px 28px rgba(10,34,64,.2)">
+<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sand)">Dans 45 min</div>
+<div class="display" style="font-size:18px;letter-spacing:1px">Sortie en zodiac</div>
+<div style="font-size:12px;color:var(--soft)">Groupe Fulmar · Marina, pont 4</div>
+</div>
+</a>
+<div class="row"><div class="time">18:00</div><div class="dot next"></div><div class="ev"><b>Récap avec l'équipe d'expédition</b><span>Théâtre · Pont 5</span></div></div>
+<div class="row"><div class="time">21:30</div><div class="dot next"></div><div class="ev" style="flex-direction:row;align-items:center;gap:12px"><div style="flex:1;display:flex;flex-direction:column;gap:2px"><b>Veille des aurores</b><span>Ponts extérieurs · alerte en cabine</span></div>
+<button class="pill" id="alert" aria-pressed="false" aria-label="Activer l'alerte aurores" style="min-width:44px;width:44px;padding:0;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></div></div>
+</div>
+<nav class="tab" data-active="journee"></nav>
+</div>
+</section>
+
+<!-- 03 FAUNE -->
+<section class="screen-wrap" aria-label="Écran 3 : Carnet de faune">
+<div class="screen-label">03 · Carnet de faune</div>
+<div class="phone" id="faune">
+<div style="padding:56px 24px 0;display:flex;flex-direction:column;gap:6px">
+<div class="eyebrow" style="color:var(--muted)">Mes observations</div>
+<div class="display" style="font-size:32px;font-weight:300;letter-spacing:1px">Carnet de faune</div>
+</div>
+<div style="margin:20px 20px 0;background:var(--navy);border-radius:28px;padding:20px;position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column;gap:6px">
+<svg width="350" height="120" viewBox="0 0 350 120" fill="none" style="position:absolute;right:-20px;top:0" aria-hidden="true">
+<path d="M0 70 C 70 20, 140 90, 220 40 S 330 20, 370 50" stroke="#B49A6C" stroke-opacity=".7" stroke-width="1.2"/>
+<path d="M0 85 C 80 35, 150 105, 230 55 S 330 35, 370 70" stroke="#8FB3C7" stroke-opacity=".5"/>
+<path d="M0 100 C 90 50, 160 120, 240 70 S 330 50, 370 90" stroke="#fff" stroke-opacity=".15"/>
+</svg>
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sand);position:relative">Ce soir</div>
+<div class="display" style="font-size:20px;letter-spacing:1px;position:relative">Aurores boréales probables</div>
+<div style="font-size:13px;color:var(--soft);position:relative">Ciel dégagé au-dessus de la mer de Norvège</div>
+</div>
+<div style="margin:18px 24px 10px;display:flex;justify-content:space-between;align-items:baseline">
+<div style="font-weight:600;font-size:15px">Espèces du voyage</div>
+<div style="font-size:13px;color:var(--muted)" id="faune-count"></div>
+</div>
+<div style="margin:0 20px;display:flex;flex-direction:column;gap:10px" id="species"></div>
+<nav class="tab" data-active="faune"></nav>
+</div>
+</section>
+
+<!-- 04 ESCALE -->
+<section class="screen-wrap" aria-label="Écran 4 : Débarquement">
+<div class="screen-label">04 · Débarquement</div>
+<div class="phone" id="escale">
+<div class="hero" style="height:330px">
+<svg width="390" height="330" viewBox="0 0 390 330" fill="none" aria-hidden="true">
+<path d="M250 0 C 230 60, 300 90, 280 150 S 330 230, 390 240 L390 0 Z" fill="#13325A"/>
+<path d="M60 250 C 120 200, 180 210, 230 160 S 270 110, 290 120" stroke="#B49A6C" stroke-width="1.5" stroke-dasharray="4 6"/>
+<circle cx="60" cy="250" r="6" fill="#fff"/><circle cx="290" cy="120" r="8" fill="#B49A6C"/><circle cx="290" cy="120" r="16" stroke="#B49A6C" stroke-opacity=".4"/>
+<path d="M0 285 C 70 255, 140 305, 210 277 S 330 255, 390 280 L390 330 L0 330 Z" fill="#F4F6F8"/>
+</svg>
+<a href="#accueil" class="goto iconbtn" aria-label="Retour à l'accueil" style="position:absolute;left:20px;top:52px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></a>
+<div style="position:absolute;left:24px;top:120px;right:120px;display:flex;flex-direction:column;gap:6px">
+<div class="eyebrow" style="color:var(--sand)">Groupe Fulmar</div>
+<div class="display" style="font-size:30px;line-height:1.1;font-weight:300;letter-spacing:1px;color:#fff">Sortie en zodiac</div>
+<div style="font-size:13px;color:var(--soft)">Côte nord de Senja</div>
+</div>
+</div>
+<div style="position:absolute;left:20px;right:20px;top:270px;display:flex;flex-direction:column;gap:14px">
+<div class="card shadow" style="padding:18px 8px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Départ</div><div style="font-size:20px;font-weight:600">14:30</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;border-left:1px solid var(--line);border-right:1px solid var(--line)"><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Durée</div><div style="font-size:20px;font-weight:600">2 h</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Rendez-vous</div><div style="font-size:20px;font-weight:600">Pont 4</div></div>
+</div>
+<div class="card" style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px"><div style="font-weight:600;font-size:15px">À emporter</div><div style="font-size:13px;color:var(--muted)" id="pack-count"></div></div>
+<label class="check"><input type="checkbox" checked> Bottes en caoutchouc</label>
+<label class="check"><input type="checkbox"> Gilet de sauvetage (remis à la marina)</label>
+<label class="check"><input type="checkbox" checked> Parka et couches chaudes</label>
+<label class="check"><input type="checkbox"> Jumelles et appareil photo</label>
+</div>
+<button class="ready" id="ready">Je suis prêt·e</button>
+</div>
+<nav class="tab" data-active="escale"></nav>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div>Estelle Lavenac — designer graphique senior (print, web &amp; motion)</div>
+<div><a href="https://www.behance.net/estellelavenac" target="_blank" rel="noopener">Voir mon book sur Behance</a></div>
+</footer>
+
+<script>
+(function(){
+  var icons = {
+    accueil:['Accueil','<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>'],
+    journee:['Journée','<rect x="3" y="5" width="18" height="16" rx="4"/><path d="M3 10h18M8 3v4M16 3v4"/>'],
+    faune:['Faune','<circle cx="7" cy="15" r="4"/><circle cx="17" cy="15" r="4"/><path d="M11 15h2M5 11l2-6h3l1 6M19 11l-2-6h-3l-1 6"/>'],
+    escale:['Escale','<path d="M2 16c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M4 13l2-5h12l2 5"/><path d="M9 8V5h6v3"/>']
+  };
+  document.querySelectorAll('nav.tab').forEach(function(nav){
+    var active = nav.getAttribute('data-active');
+    nav.setAttribute('aria-label','Navigation');
+    Object.keys(icons).forEach(function(k){
+      var a = document.createElement('a');
+      a.href = '#' + k; a.className = 'goto' + (k === active ? ' on' : '');
+      a.setAttribute('aria-label', icons[k][0]);
+      if (k === active) a.setAttribute('aria-current','page');
+      a.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + icons[k][1] + '</svg>' + (k === active ? icons[k][0] : '');
+      nav.appendChild(a);
+    });
+  });
+
+  // Navigation : défilement doux + mise en valeur de l'écran cible
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a.goto'); if (!a) return;
+    var target = document.querySelector(a.getAttribute('href')); if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:'smooth', block:'center', inline:'center'});
+    target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
+    setTimeout(function(){ target.classList.remove('flash'); }, 1200);
+  });
+
+  // Jours
+  var days = document.getElementById('days'), current = 3;
+  function renderDays(){
+    days.innerHTML = '';
+    [1,2,3,4,5,6].forEach(function(n){
+      var b = document.createElement('button');
+      b.className = 'day' + (n === current ? ' on' : '');
+      b.setAttribute('aria-label','Jour ' + n); b.setAttribute('aria-pressed', n === current);
+      b.innerHTML = '<small>Jour</small><strong>' + n + '</strong>';
+      b.onclick = function(){ current = n; renderDays(); };
+      days.appendChild(b);
+    });
+  }
+  renderDays();
+
+  // Alerte aurores
+  var alertBtn = document.getElementById('alert');
+  alertBtn.onclick = function(){
+    var on = alertBtn.classList.toggle('on');
+    alertBtn.setAttribute('aria-pressed', on);
+  };
+
+  // Faune
+  var species = [
+    ['Orque','Orcinus orca',true],
+    ['Baleine à bosse','Megaptera novaeangliae',true],
+    ['Pygargue à queue blanche','Haliaeetus albicilla',true],
+    ['Fulmar boréal','Fulmarus glacialis',true],
+    ['Eider à duvet','Somateria mollissima',false]
+  ];
+  var list = document.getElementById('species');
+  function renderSpecies(){
+    list.innerHTML = '';
+    species.forEach(function(s, i){
+      var row = document.createElement('div');
+      row.className = 'card'; row.style.cssText = 'border-radius:22px;padding:12px 12px 12px 14px;display:flex;align-items:center;gap:14px';
+      row.innerHTML = '<div class="badge' + (s[2] ? ' on' : '') + '"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14c3-4 7-6 11-6 4 0 7 2 9 5-3 1-5 3-6 6-3-2-8-2-14-5z"/><circle cx="17" cy="11" r=".6"/></svg></div>' +
+        '<div style="flex:1;display:flex;flex-direction:column;gap:2px"><div style="font-weight:600;font-size:15px">' + s[0] + '</div><div style="font-size:12px;color:var(--muted)">' + s[1] + '</div></div>';
+      var b = document.createElement('button');
+      b.className = 'pill' + (s[2] ? ' on' : '');
+      b.textContent = s[2] ? 'Vu' : 'À voir';
+      b.setAttribute('aria-label', (s[2] ? 'Retirer ' : 'Marquer comme vu : ') + s[0]);
+      b.onclick = function(){ species[i][2] = !species[i][2]; renderSpecies(); };
+      row.appendChild(b); list.appendChild(row);
+    });
+    var n = species.filter(function(s){ return s[2]; }).length;
+    document.getElementById('faune-count').textContent = n + ' / ' + species.length + ' observées';
+    document.querySelector('[data-seen-count]').textContent = n + ' espèce' + (n > 1 ? 's' : '') + ' observée' + (n > 1 ? 's' : '');
+  }
+  renderSpecies();
+
+  // Liste à emporter
+  var boxes = document.querySelectorAll('#escale input[type=checkbox]');
+  function packCount(){
+    var n = 0; boxes.forEach(function(b){ if (b.checked) n++; });
+    document.getElementById('pack-count').textContent = n + ' / ' + boxes.length;
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', packCount); });
+  packCount();
+
+  var ready = document.getElementById('ready');
+  ready.onclick = function(){
+    var on = ready.classList.toggle('on');
+    ready.textContent = on ? 'Bonne exploration !' : 'Je suis prêt·e';
+  };
+})();
+</script>
+</body>
+</html>
