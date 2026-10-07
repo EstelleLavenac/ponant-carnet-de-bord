@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carnet de bord — une proposition d'Estelle Lavenac pour PONANT</title>
+<title>Carnet de bord — PONANT · concept d'Estelle Lavenac</title>
 <meta name="description" content="Concept d'application compagnon pour les voyages d'exploration — proposition de candidature d'Estelle Lavenac, designer graphique.">
 <meta property="og:title" content="Carnet de bord — une proposition d'Estelle Lavenac pour PONANT">
 <meta property="og:description" content="Ce que je pourrais vous apporter : un concept d'application compagnon pour les voyages d'exploration.">
@@ -13,20 +13,16 @@
 <style>
 :root{--navy:#0A2240;--navy2:#13325A;--ground:#F4F6F8;--line:#DCE3EA;--muted:#52637A;--soft:#C7D2DE;--sand:#B49A6C;--white:#FFFFFF}
 *{box-sizing:border-box}
-body{margin:0;background:#E7ECF0;color:var(--navy);font-family:'Jost',sans-serif}
+html,body{height:100%}
+body{margin:0;background:#E7ECF0;color:var(--navy);font-family:'Jost',sans-serif;overflow:hidden;display:flex;align-items:center;justify-content:center}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit}
 .display{font-family:'Peignot','Josefin Sans',sans-serif}
-.intro{max-width:1100px;margin:0 auto;padding:56px 16px 24px;display:flex;flex-direction:column;gap:14px}
-.intro .kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
-.intro h1{margin:0;font-family:'Peignot','Josefin Sans',sans-serif;font-weight:300;font-size:clamp(30px,5vw,48px);letter-spacing:1px;line-height:1.1}
-.intro p{margin:0;max-width:640px;font-size:17px;line-height:1.55;color:#33465C}
-.intro .tag{align-self:flex-start;font-size:13px;color:var(--muted);border:1px solid #C3CED8;border-radius:999px;padding:6px 14px}
-.stage{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;padding:24px 16px 56px;max-width:1800px;margin:0 auto}
-.screen-wrap{display:flex;flex-direction:column;gap:12px;align-items:center}
-.screen-label{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.phone{width:390px;max-width:calc(100vw - 32px);height:844px;position:relative;overflow:hidden;background:var(--ground);border-radius:40px;box-shadow:0 30px 60px rgba(10,34,64,.18),0 0 0 10px #0A2240;transition:box-shadow .3s}
-.phone.flash{box-shadow:0 30px 60px rgba(10,34,64,.18),0 0 0 10px #0A2240,0 0 0 16px var(--sand)}
+.device{width:390px;height:844px;position:relative;flex-shrink:0;border-radius:44px;overflow:hidden;background:var(--ground);box-shadow:0 30px 70px rgba(10,34,64,.22),0 0 0 10px #0A2240;transform-origin:center center}
+.phone{position:absolute;inset:0;overflow:hidden;background:var(--ground);opacity:0;visibility:hidden;transform:translateX(24px);transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s}
+.phone.active{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease,visibility 0s}
+.phone.back{transform:translateX(-24px)}
+@media (max-width:500px){body{background:var(--ground)}.device{border-radius:0;box-shadow:none}}
 .hero{position:absolute;left:0;top:0;width:100%;background:var(--navy);overflow:hidden}
 .hero svg{position:absolute;left:0;top:0}
 .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:500}
@@ -61,24 +57,14 @@ nav.tab a:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid v
 .ready.on{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
 footer{max-width:1100px;margin:0 auto;padding:8px 16px 64px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
 footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
-@media (max-width:440px){.phone{border-radius:28px;box-shadow:0 20px 40px rgba(10,34,64,.18),0 0 0 6px #0A2240}}
 </style>
 </head>
 <body>
 
-<header class="intro">
-<div class="kicker">Candidature · Graphic Designer · PONANT Marseille</div>
-<h1>Ce que je pourrais vous apporter</h1>
-<p>Une proposition pour prolonger l'expérience PONANT dans la poche des passagers : un carnet de bord qui raconte l'expédition au fil des jours — programme, sorties en zodiac, carnet de faune — dans l'élégance Art déco de votre charte. Les écrans sont interactifs : cliquez, cochez, naviguez.</p>
-<div class="tag">Concept personnel, non officiel · contenu d'exemple : « Polar Lights », Le Commandant Charcot</div>
-</header>
-
-<main class="stage">
+<main class="device" id="device">
 
 <!-- 01 ACCUEIL -->
-<section class="screen-wrap" aria-label="Écran 1 : Accueil">
-<div class="screen-label">01 · Accueil</div>
-<div class="phone" id="accueil">
+<div class="phone active" id="accueil">
 <div class="hero" style="height:390px">
 <svg width="390" height="390" viewBox="0 0 390 390" fill="none" aria-hidden="true">
 <path d="M-20 130 C 80 70, 160 160, 250 100 S 380 70, 420 110" stroke="#B49A6C" stroke-opacity=".6" stroke-width="1.2"/>
@@ -136,11 +122,8 @@ footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
 </div>
 <nav class="tab" data-active="accueil"></nav>
 </div>
-</section>
 
 <!-- 02 JOURNEE -->
-<section class="screen-wrap" aria-label="Écran 2 : Ma journée">
-<div class="screen-label">02 · Ma journée</div>
 <div class="phone" id="journee">
 <div style="padding:56px 24px 0;display:flex;flex-direction:column;gap:6px">
 <div class="eyebrow" style="color:var(--muted)">Jeudi · Jour 3</div>
@@ -167,11 +150,8 @@ footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
 </div>
 <nav class="tab" data-active="journee"></nav>
 </div>
-</section>
 
 <!-- 03 FAUNE -->
-<section class="screen-wrap" aria-label="Écran 3 : Carnet de faune">
-<div class="screen-label">03 · Carnet de faune</div>
 <div class="phone" id="faune">
 <div style="padding:56px 24px 0;display:flex;flex-direction:column;gap:6px">
 <div class="eyebrow" style="color:var(--muted)">Mes observations</div>
@@ -194,11 +174,8 @@ footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
 <div style="margin:0 20px;display:flex;flex-direction:column;gap:10px" id="species"></div>
 <nav class="tab" data-active="faune"></nav>
 </div>
-</section>
 
 <!-- 04 ESCALE -->
-<section class="screen-wrap" aria-label="Écran 4 : Débarquement">
-<div class="screen-label">04 · Débarquement</div>
 <div class="phone" id="escale">
 <div class="hero" style="height:330px">
 <svg width="390" height="330" viewBox="0 0 390 330" fill="none" aria-hidden="true">
@@ -231,14 +208,8 @@ footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
 </div>
 <nav class="tab" data-active="escale"></nav>
 </div>
-</section>
 
 </main>
-
-<footer>
-<div>Estelle Lavenac — designer graphique senior (print, web &amp; motion)</div>
-<div><a href="https://www.behance.net/estellelavenac" target="_blank" rel="noopener">Voir mon book sur Behance</a></div>
-</footer>
 
 <script>
 (function(){
@@ -261,15 +232,45 @@ footer a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--sand)}
     });
   });
 
-  // Navigation : défilement doux + mise en valeur de l'écran cible
+  // Navigation entre écrans, comme dans une vraie appli
+  var order = ['accueil','journee','faune','escale'];
+  function show(id){
+    var next = document.getElementById(id); if (!next || next.classList.contains('active')) return;
+    var cur = document.querySelector('.phone.active');
+    var forward = !cur || order.indexOf(id) > order.indexOf(cur.id);
+    document.querySelectorAll('.phone').forEach(function(p){ p.classList.remove('back'); });
+    if (!forward) next.classList.add('back');
+    void next.offsetWidth;
+    if (cur) { cur.classList.remove('active'); if (forward) cur.classList.add('back'); }
+    next.classList.remove('back'); next.classList.add('active');
+    next.scrollTop = 0;
+  }
   document.addEventListener('click', function(e){
     var a = e.target.closest('a.goto'); if (!a) return;
-    var target = document.querySelector(a.getAttribute('href')); if (!target) return;
     e.preventDefault();
-    target.scrollIntoView({behavior:'smooth', block:'center', inline:'center'});
-    target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
-    setTimeout(function(){ target.classList.remove('flash'); }, 1200);
+    var id = a.getAttribute('href').slice(1);
+    show(id);
+    history.replaceState(null, '', '#' + id);
   });
+  if (location.hash && document.getElementById(location.hash.slice(1))) {
+    document.querySelectorAll('.phone').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById(location.hash.slice(1)).classList.add('active');
+  }
+
+  // Mise à l'échelle pour tenir dans l'écran
+  var device = document.getElementById('device');
+  function fit(){
+    var w = window.innerWidth, h = window.innerHeight;
+    if (w <= 500) {
+      device.style.transform = 'scale(' + Math.min(w/390, h/844) + ')';
+      device.style.margin = ((h - 844)/2) + 'px ' + ((w - 390)/2) + 'px';
+    } else {
+      var k = Math.min(1, (h - 56)/844, (w - 56)/390);
+      device.style.transform = 'scale(' + k + ')';
+      device.style.margin = ((844*k - 844)/2) + 'px ' + ((390*k - 390)/2) + 'px';
+    }
+  }
+  window.addEventListener('resize', fit); fit();
 
   // Jours
   var days = document.getElementById('days'), current = 3;
